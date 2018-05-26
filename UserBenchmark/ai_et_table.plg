@@ -1,0 +1,22 @@
+set datafile separator ","
+set terminal pdf size 12.8,6.4
+set size 1,1
+set size ratio 0.48
+set grid xtics
+set grid ytics
+set xtics font ",18"
+set ytics font ",18"
+set xlabel "Idő" font ",18"
+set ylabel "Becsült érték" font ",18"
+set style line 1 lw 2 lc rgb "#B8003C"
+set style line 2 lw 2 lc rgb "#21E800"
+set style line 3 lw 2 lc rgb "#0090F2"
+set grid linewidth 1
+set output "C:/work/discard.pdf"
+set key outside
+plot for [col=3:END] SOURCE using 1:col smooth frequency with histeps ls (col-2) title 'M=' . EPS[col - 2]
+set xrange [GPVAL_DATA_X_MIN:GPVAL_DATA_X_MAX]
+set yrange [GPVAL_DATA_Y_MIN:GPVAL_DATA_Y_MAX]
+set output DEST
+replot
+set output
